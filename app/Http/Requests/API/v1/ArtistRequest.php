@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\API\v1;
 
-use App\Http\Requests\Request;
+use App\Http\Requests\ApiRequest;
 use App\Models\Artist;
 
-class ArtistRequest extends Request
+class ArtistRequest extends ApiRequest
 {
     /**
      * The resource name.
