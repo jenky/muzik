@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "dependencies": {
+    "gulp": "^3.8.8",
+    "jquery": "^2.0",
+    "lodash": "^3.10.1",
+    "react": "^0.14.0",
+    "react-redux": "^3.1.0",
+    "redux": "^3.0.2"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.23",
+    "babel-loader": "^5.3.2",
+    "babel-plugin-react-transform": "^1.1.1",
+    "babel-runtime": "^5.8.20",
+    "bootstrap-sass": "^3.0.0",
+    "chunk-manifest-webpack-plugin": "*",
+    "jstransform-loader": "*",
+    "jsx-control-statements": "*",
+    "jsx-loader": "*",
+    "laravel-elixir": "^3.0.0",
+    "react-transform-hmr": "^1.0.1",
+    "redux-devtools": "^2.1.5",
+    "webpack": "^1.12.1",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.0.0"
+  }
+}
