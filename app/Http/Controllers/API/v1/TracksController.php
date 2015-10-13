@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\ApiController;
 use App\Http\Requests\API\v1\TrackRequest;
 use App\Models\Track;
