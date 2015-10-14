@@ -19,7 +19,7 @@ class CreateArtistsTable extends Migration
             $table->string('permalink')->index()->unique();
             $table->timestamps();
             $table->softDeletes();
-        });        
+        });
     }
 
     /**

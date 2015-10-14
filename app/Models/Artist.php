@@ -31,7 +31,6 @@ class Artist extends Model implements HasMedia
      */
     protected $appends = ['permalink_url'];
 
-
     /**
      * Validaction rules.
      * 
@@ -58,6 +57,6 @@ class Artist extends Model implements HasMedia
      */
     public function getPermalinkUrlAttribute()
     {
-        return root_domain(url('a/' . str_slug($this->permalink)));
+        return root_domain(url('a/'.str_slug($this->permalink)));
     }
 }
