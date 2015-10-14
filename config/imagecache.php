@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -15,7 +15,7 @@ return array(
     | Examples: "images", "img/cache"
     |
     */
-   
+
     'route' => 'images',
 
     /*
@@ -29,12 +29,12 @@ return array(
     | Define as many directories as you like.
     |
     */
-    
-    'paths' => array(
+
+    'paths' => [
         // public_path('upload'),
         storage_path('media'),
         public_path('images'),
-    ),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -51,12 +51,12 @@ return array(
     | will be applied, by its fully qualified name.
     |
     */
-   
-    'templates' => array(
+
+    'templates' => [
         'small' => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',
-    ),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ return array(
     | Lifetime in minutes of the images handled by the imagecache route.
     |
     */
-   
+
     'lifetime' => 43200,
 
-);
+];

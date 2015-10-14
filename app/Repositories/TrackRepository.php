@@ -11,13 +11,13 @@ class TrackRepository implements Contract
     protected $track;
 
     /**
-     * Class constructor
+     * Class constructor.
      * 
      * @param \App\Models\Track $track
      * 
      * @return void
      */
-    public function __construct(Track $track) 
+    public function __construct(Track $track)
     {
         $this->track = $track;
     }

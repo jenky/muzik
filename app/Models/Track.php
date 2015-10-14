@@ -77,6 +77,6 @@ class Track extends Model implements HasMedia
      */
     public function getPermalinkUrlAttribute()
     {
-        return root_domain(url('t/' . str_slug($this->permalink)));
+        return root_domain(url('t/'.str_slug($this->permalink)));
     }
 }
