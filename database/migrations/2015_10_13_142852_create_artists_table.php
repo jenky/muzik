@@ -14,11 +14,12 @@ class CreateArtistsTable extends Migration
     {
         Schema::create('artists', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->text('about');
             $table->string('permalink')->index()->unique();
             $table->timestamps();
             $table->softDeletes();
-        });
+        });        
     }
 
     /**

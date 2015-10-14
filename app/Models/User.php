@@ -36,7 +36,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token', 'created_at', 'updated_at', 'deleted_at'];
+    protected $hidden = ['password', 'remember_token', 'updated_at', 'deleted_at'];
 
     /**
      * The attributes that should be mutated to dates.
@@ -56,4 +56,13 @@ class User extends Model implements AuthenticatableContract,
         'email'      => 'required|email',
         'password'   => 'required|min:6',
     ];
+
+    /**
+     * @Relation
+     * Get all the tracks for current user.
+     */
+    public function tracks()
+    {
+        return $this->hasMany(Track::class);
+    }
 }

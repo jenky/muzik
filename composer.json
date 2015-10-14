@@ -14,7 +14,11 @@
 		"graham-campbell/exceptions": "~4.0",
 		"dingo/api": "1.0.*@dev",
 		"jenky/laravel-api-helper": "~1.0",
-		"barryvdh/laravel-cors": "0.7.x"
+		"barryvdh/laravel-cors": "0.7.x",
+		"vinkla/hashids": "~2.0",
+		"spatie/laravel-medialibrary": "~3.5",
+		"intervention/image": "~2.3",
+		"intervention/imagecache": "~2.3"
 	},
 	"require-dev": {
 		"fzaninotto/faker": "~1.4",

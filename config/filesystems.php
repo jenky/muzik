@@ -80,6 +80,10 @@ return [
             'url_type'  => 'publicURL',
         ],
 
+        'media' => [
+            'driver' => 'local',
+            'root'   => storage_path('media'),
+        ],
     ],
 
 ];

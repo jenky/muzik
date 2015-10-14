@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\v1;
 use App\Http\Controllers\ApiController;
 use App\Http\Requests\API\v1\TrackRequest;
 use App\Models\Track;
+use App\Contracts\Repositories\TrackRepository;
 
 class TracksController extends ApiController
 {
@@ -32,24 +33,27 @@ class TracksController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Track $track)
     {
         //
+        $track = $track->find(1);
+
+        dd($track->getFirstMedia('artwork')->getUrl());
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\API\v1\TrackRequest $request
-     * @param \App\Models\Track $track
+     * @param \App\Contracts\Repositories\TrackRepository $trackRepo
      * 
      * @return \Illuminate\Http\Response
      */
-    public function store(TrackRequest $request, Track $track)
+    public function store(TrackRequest $request, TrackRepository $trackRepo)
     {
-        $track = $track->create($request->all());
+        $trackRepo->create($request);
 
-        return response()->json($track);
+        return $this->response->created();
     }
 
     /**
@@ -81,13 +85,27 @@ class TracksController extends ApiController
      *
      * @param \App\Http\Requests\API\v1\TrackRequest $request
      * @param \App\Models\Track $track
-     * @param  int  $id
+     * @param int  $id
      * 
      * @return \Illuminate\Http\Response
      */
     public function update(TrackRequest $request, Track $track, $id)
     {
-        return $this->updateResource($user, $id, $request->all());
+        $track = $track->find($id);
+
+        if (is_null($track)) {
+            $this->response->errorNotFound(null);
+        }
+
+        $track->update($request->except('artist_ids', 'artwork'));
+        $track->artists()->attach($request->input('artist_ids', []));
+
+        if ($request->hasFile('artwork')) {
+            $track->clearMediaCollection('artwork');
+            $track->addMedia($request->file('artwork'))->toCollection('artwork');
+        }
+
+        return response()->json($track);
     }
 
     /**
