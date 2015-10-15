@@ -146,6 +146,7 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Conner\Tagging\Providers\TaggingServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -211,7 +212,7 @@ return [
         'Html'   => Collective\Html\HtmlFacade::class,
         'Carbon' => Carbon\Carbon::class,
         'Flash'  => Laracasts\Flash\Flash::class,
-        'Image' => Intervention\Image\Facades\Image::class,
+        'Image'  => Intervention\Image\Facades\Image::class,
     ],
 
 ];

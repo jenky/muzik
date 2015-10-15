@@ -40,6 +40,10 @@ class TrackRepository implements Contract
             $track->addMedia($request->file('artwork'))->toCollection('artwork');
         }
 
+        if ($tags = $request->input('tags')) {
+            $track->tag($tags);
+        }
+
         return $track;
     }
 }

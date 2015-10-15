@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Conner\Tagging\Taggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -9,12 +10,12 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 class Track extends Model implements HasMedia
 {
-    use HasMediaTrait, SoftDeletes;
+    use HasMediaTrait, SoftDeletes, Taggable;
 
     /**
      * @var array
      */
-    protected $guarded = ['id', '_method', '_token', 'artist_ids'];
+    protected $guarded = ['id', '_method', '_token', 'artist_ids', 'tags'];
 
     /**
      * @var array
@@ -41,6 +42,7 @@ class Track extends Model implements HasMedia
         'permalink'  => 'required|min:2|alpha_dash|unique:tracks',
         'user_id'    => 'integer',
         'artist_ids' => 'required|array',
+        'tags'       => 'array',
     ];
 
     /**

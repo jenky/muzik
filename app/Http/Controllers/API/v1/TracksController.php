@@ -36,9 +36,9 @@ class TracksController extends ApiController
     public function create(Track $track)
     {
         //
-        $track = $track->find(1);
+        $track = $track->find(2);
 
-        dd($track->getFirstMedia('artwork')->getUrl());
+        dd($track->tagNames());
     }
 
     /**
@@ -97,12 +97,16 @@ class TracksController extends ApiController
             $this->response->errorNotFound(null);
         }
 
-        $track->update($request->except('artist_ids', 'artwork'));
+        $track->update($request->except('artist_ids', 'artwork', 'tags'));
         $track->artists()->attach($request->input('artist_ids', []));
 
         if ($request->hasFile('artwork')) {
             $track->clearMediaCollection('artwork');
             $track->addMedia($request->file('artwork'))->toCollection('artwork');
+        }
+
+        if ($tags = $request->input('tags')) {
+            $track->tag($tags);
         }
 
         return response()->json($track);

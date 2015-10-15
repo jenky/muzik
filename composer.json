@@ -18,7 +18,8 @@
 		"vinkla/hashids": "~2.0",
 		"spatie/laravel-medialibrary": "~3.5",
 		"intervention/image": "~2.3",
-		"intervention/imagecache": "~2.3"
+		"intervention/imagecache": "~2.3",
+		"rtconner/laravel-tagging": "~2.0"
 	},
 	"require-dev": {
 		"fzaninotto/faker": "~1.4",
