@@ -86,6 +86,8 @@ class Track extends Model implements HasMedia
 
     /**
      * Get the artwork url.
+     * 
+     * @return string
      */
     public function getArtworkUrl()
     {
