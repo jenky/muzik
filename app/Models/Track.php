@@ -25,7 +25,7 @@ class Track extends Model implements HasMedia
     /**
      * @var array
      */
-    protected $hidden = ['updated_at', 'deleted_at', 'pivot'];
+    protected $hidden = ['updated_at', 'deleted_at', 'pivot', 'tagged', 'media'];
 
     /**
      * @var array
@@ -80,16 +80,14 @@ class Track extends Model implements HasMedia
      */
     public function prepare()
     {
-        $this->addHidden('tagged', 'media');
-
         $this->tag_list = $this->tagNames();
-        $this->artwork_url = $this->getArtwork();
+        $this->artwork_url = $this->getArtworkUrl();
     }
 
     /**
      * Get the artwork url.
      */
-    public function getArtwork()
+    public function getArtworkUrl()
     {
         $artwork = $this->getMedia('artwork')->first();
 
