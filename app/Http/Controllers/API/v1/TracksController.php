@@ -26,8 +26,8 @@ class TracksController extends ApiController
     public function index(Track $track)
     {
         $tracks = apihelper($track->with('tagged', 'media'))->collection();
-        
-        $tracks->each(function($track) {
+
+        $tracks->each(function ($track) {
             $track->prepare();
         });
 
