@@ -26,7 +26,12 @@ Route::get('/', function () {
 
 $api = app(Dingo\Api\Routing\Router::class);
 
-$api->version('v1', ['middleware' => 'cors'], function ($api) {
+$middleware = ['cors'];
+if (!is_null(app('debugbar'))) {
+    $middleware[] = 'Barryvdh\Debugbar\Middleware\Debugbar';
+}
+
+$api->version('v1', ['middleware' => $middleware], function ($api) {
     $api->group(['namespace' => 'App\Http\Controllers\API\v1'], function ($api) {
         $api->resources([
             'users'   => 'UsersController',
