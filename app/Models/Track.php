@@ -64,15 +64,6 @@ class Track extends Model implements HasMedia
     }
 
     /**
-     * @Relation
-     * Get the artwork.
-     */
-    public function artwork()
-    {
-        return $this->morphMany(Media::class, 'model');
-    }
-
-    /**
      * Get the permalink url.
      * 
      * @return string
@@ -80,5 +71,34 @@ class Track extends Model implements HasMedia
     public function getPermalinkUrlAttribute()
     {
         return root_domain(url('t/'.str_slug($this->permalink)));
+    }
+
+    /**
+     * Prepare for JSON response.
+     * 
+     * @return void
+     */
+    public function prepare()
+    {
+        $this->addHidden('tagged', 'media');
+
+        $this->tag_list = $this->tagNames();
+        $this->artwork_url = $this->getArtwork();
+    }
+
+    /**
+     * Get the artwork url.
+     */
+    public function getArtwork()
+    {
+        $artwork = $this->getMedia('artwork')->first();
+    
+        if (!is_null($artwork)) {
+            $artworkUrl = route('imagecache', ['medium', '1/AdminCP.png']);
+        } else {
+            $artworkUrl = route('imagecache', ['medium', 'no_image.png']);
+        }
+
+        return $artworkUrl;
     }
 }

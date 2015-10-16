@@ -25,7 +25,13 @@ class TracksController extends ApiController
      */
     public function index(Track $track)
     {
-        return response()->json(apihelper($track)->collection());
+        $tracks = apihelper($track->with('tagged', 'media'))->collection();
+        
+        $tracks->each(function($track) {
+            $track->prepare();
+        });
+
+        return response()->json($tracks);
     }
 
     /**
@@ -36,9 +42,6 @@ class TracksController extends ApiController
     public function create(Track $track)
     {
         //
-        $track = $track->find(2);
-
-        dd($track->tagNames());
     }
 
     /**
@@ -66,7 +69,10 @@ class TracksController extends ApiController
      */
     public function show(Track $track, $id)
     {
-        return $this->findResource($track, $id);
+        $track = $this->getResource($track->with('tagged', 'media'), $id);
+        $track->prepare();
+
+        return response()->json($track);
     }
 
     /**
@@ -91,11 +97,7 @@ class TracksController extends ApiController
      */
     public function update(TrackRequest $request, Track $track, $id)
     {
-        $track = $track->find($id);
-
-        if (is_null($track)) {
-            $this->response->errorNotFound(null);
-        }
+        $track = $this->getResource($track->with('tagged', 'media'), $id);
 
         $track->update($request->except('artist_ids', 'artwork', 'tags'));
         $track->artists()->attach($request->input('artist_ids', []));
@@ -108,6 +110,8 @@ class TracksController extends ApiController
         if ($tags = $request->input('tags')) {
             $track->tag($tags);
         }
+
+        $track->prepare();
 
         return response()->json($track);
     }
