@@ -92,8 +92,8 @@ class Track extends Model implements HasMedia
     public function getArtwork()
     {
         $artwork = $this->getMedia('artwork')->first();
-    
-        if (!is_null($artwork)) {
+
+        if (! is_null($artwork)) {
             $artworkUrl = route('imagecache', ['medium', '1/AdminCP.png']);
         } else {
             $artworkUrl = route('imagecache', ['medium', 'no_image.png']);

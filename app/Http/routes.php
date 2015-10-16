@@ -27,7 +27,7 @@ Route::get('/', function () {
 $api = app(Dingo\Api\Routing\Router::class);
 
 $middleware = ['cors'];
-if (!is_null(app('debugbar'))) {
+if (! is_null(app('debugbar'))) {
     $middleware[] = 'Barryvdh\Debugbar\Middleware\Debugbar';
 }
 
