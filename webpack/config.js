@@ -1,7 +1,6 @@
 var webpack = require("webpack");
 var path = require("path");
 var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
-var SplitByNamePlugin = require('split-by-name-webpack-plugin');
 
 var resolveBowerPath = function(componentPath) {
     return path.join(__dirname, '../bower_components', componentPath);
@@ -57,10 +56,16 @@ module.exports = {
         vendor: [
             // "backbone",
             // "backbone-deep-model",
-            "jquery",
+            'jquery',
             // "underscore",
             // "backbone-react-component",
-            "react",    
+            'history',
+            'react',
+            'react-redux',
+            'react-router',
+            'redux',
+            'redux-devtools',
+            'redux-devtools/lib/react',
             // "formsy-react",
             // 'bootstrap',
             // 'jquery.scrollbar',
@@ -79,7 +84,37 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.css$/, loader: "style!css" },
-            { test: /\.js$/, loader: "jsx-loader?insertPragma=React.DOM&harmony!jstransform-loader?jsx-control-statements" }
+            // { test: /\.js$/, loader: "jsx-loader?insertPragma=React.DOM&harmony!jstransform-loader?jsx-control-statements" }
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                loader: 'babel',
+                query: {
+                    stage: 0,
+                    plugins: []
+                }
+                /*query: {
+                    stage: 0,
+                    optional: ['runtime'],
+                    env: {
+                        development: {
+                            plugins: ['react-transform'],
+                            extra: {
+                                'react-transform': {
+                                    transforms: [{
+                                        transform: 'react-transform-hmr',
+                                        imports: ['react'],
+                                        locals: ['module'],
+                                    }, {
+                                        transform: 'react-transform-catch-errors',
+                                        imports: ['react', 'redbox-react'],
+                                    }]
+                                }
+                            }
+                        }
+                    }
+                }*/
+            }
         ]
     },
     plugins: [      

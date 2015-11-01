@@ -1,13 +1,28 @@
-var App = React.createClass({
+/*import React, { Component } from 'react';
+import { render } from 'react-dom'
+import { Router, Route, Link } from 'react-router'
 
-    render: function() {
-
+class App extends Component {
+    render() {
         return (
-            <div>Hello this is Reactct</div>
-        );
-
+            <div>Hello React</div>
+        )
     }
+})
 
-});
+class About extends Component {
+    render() {
+        return (
+            <div>About Muzik</div>
+        )
+    }
+})
 
-React.render(<View collection={self} />, document.getElementById('app'));
+render((
+    <Router>
+        <Route path="/" component={App}>
+            <Route path="about" component={About}/>
+            // <Route path="*" component={NoMatch}/>
+        </Route>
+    </Router>
+), document.getElementById('app'))
