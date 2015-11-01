@@ -11,6 +11,8 @@
 |
 */
 
+require app_path('Http/api_routes.php');
+
 Route::any('/{one?}/{two?}/{three?}/{for?}/{five?}', function() {
     
     // if (! is_null(app('debugbar'))) {
@@ -20,28 +22,6 @@ Route::any('/{one?}/{two?}/{three?}/{for?}/{five?}', function() {
     return view('app');
 });
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-| 
-| Register all routes for API system.
-| 
-*/
-
-$api = app(Dingo\Api\Routing\Router::class);
-
-$middleware = ['cors'];
-if (! is_null(app('debugbar'))) {
-    $middleware[] = 'Barryvdh\Debugbar\Middleware\Debugbar';
-}
-
-$api->version('v1', ['middleware' => $middleware], function ($api) {
-    $api->group(['namespace' => 'App\Http\Controllers\API\v1'], function ($api) {
-        $api->resources([
-            'users'   => 'UsersController',
-            'tracks'  => 'TracksController',
-            'artists' => 'ArtistsController',
-        ]);
-    });
+Route::get('/', function () {
+    return view('welcome');
 });

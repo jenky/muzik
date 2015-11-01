@@ -9,7 +9,7 @@
 return [
     'local' => [
         'app' => [
-            'url' => 'http://muzik.local',
+            'url' => 'http://muzik.dev',
         ],
     ],
 ];
