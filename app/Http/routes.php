@@ -13,8 +13,8 @@
 
 require app_path('Http/api_routes.php');
 
-Route::any('/{one?}/{two?}/{three?}/{for?}/{five?}', function() {
-    
+Route::any('/{one?}/{two?}/{three?}/{for?}/{five?}', function () {
+
     // if (! is_null(app('debugbar'))) {
     //     app('debugbar')->disable();
     // }
